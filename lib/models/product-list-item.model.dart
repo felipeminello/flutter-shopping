@@ -26,6 +26,7 @@ class ProductListItemModel {
     data['tag'] = this.tag;
     data['price'] = this.price;
     data['image'] = this.image;
+
     return data;
   }
 }
