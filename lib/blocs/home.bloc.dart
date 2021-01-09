@@ -12,7 +12,7 @@ class HomeBloc extends ChangeNotifier {
   List<ProductListItemModel> products;
   List<CategoryListItemModel> categories;
 
-  String selectedCagetory = 'todos';
+  String selectedCategory = 'todos';
 
   HomeBloc() {
     this.getCategories();
@@ -34,15 +34,17 @@ class HomeBloc extends ChangeNotifier {
   }
 
   getProductByCategory() {
-    productRepository.getByCategory(selectedCagetory).then((data) {
+    productRepository.getByCategory(selectedCategory).then((data) {
       this.products = data;
       notifyListeners();
     });
   }
 
   changeCategory(tag) {
-    selectedCagetory = tag;
+    selectedCategory = tag;
     products = null;
+    notifyListeners();
+
     getProductByCategory();
   }
 }
