@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             ),
             Text(
               "Categorias",
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
             ),
             SizedBox(
               height: 10,
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
             ),
             Text(
               "Mais Vendidos",
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
             ),
             SizedBox(
               height: 10,

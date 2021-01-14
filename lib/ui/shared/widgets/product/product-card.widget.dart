@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping/models/product-list-item.model.dart';
+import 'package:shopping/ui/android/pages/product.page.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductListItemModel item;
@@ -20,82 +21,94 @@ class ProductCard extends StatelessWidget {
           Radius.circular(5),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 240,
-            height: 240,
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-              ),
-              image: DecorationImage(
-                image: NetworkImage(item.image),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductPage(
+                tag: item.tag,
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            padding: EdgeInsets.only(
-              left: 10,
-              right: 10,
-            ),
-            height: 60,
-            child: Text(
-              item.title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 240,
+              height: 240,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.1),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5),
+                  topRight: Radius.circular(5),
+                ),
+                image: DecorationImage(
+                  image: NetworkImage(item.image),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 10,
-              right: 10,
+            SizedBox(
+              height: 10,
             ),
-            child: Text(
-              item.brand,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w300,
+            Container(
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
+              height: 60,
+              child: Text(
+                item.title,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 10,
-              right: 10,
+            SizedBox(
+              height: 5,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  width: 120,
-                  child: Text(
-                    "R\$ ${price.format(item.price)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
+              child: Text(
+                item.brand,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 120,
+                    child: Text(
+                      "R\$ ${price.format(item.price)}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

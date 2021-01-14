@@ -11,11 +11,11 @@ class TabsPage extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
-            title: Text('Home'),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.shopping_cart),
-            title: Text('Carrinho'),
+            label: 'Home',
           ),
         ],
       ),
