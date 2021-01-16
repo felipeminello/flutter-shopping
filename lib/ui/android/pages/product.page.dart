@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/models/product-details.model.dart';
+import 'package:shopping/models/product-list-item.model.dart';
 import 'package:shopping/repositories/product.repository.dart';
+import 'package:shopping/ui/shared/widgets/add-to-cart.widget.dart';
 import 'package:shopping/ui/shared/widgets/progress-indicator.widget.dart';
 
 class ProductPage extends StatelessWidget {
@@ -30,7 +32,7 @@ class ProductPage extends StatelessWidget {
                 child: Text(snapshot.error),
               );
             }
-            return content(product);
+            return content(product, context);
         }
 
         return null;
@@ -38,18 +40,41 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  Widget content(ProductDetailsModel product) {
+  Widget content(ProductDetailsModel product, context) {
     return Scaffold(
       appBar: AppBar(),
-      body: new ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: product.images.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            width: 200,
-            child: Image.network(product.images[index]),
-          );
-        },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Produto: ${product.title}',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          new Expanded(
+            child: new ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: product.images.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: 200,
+                  child: Image.network(product.images[index]),
+                );
+              },
+            ),
+          ),
+          AddToCart(
+            item: ProductListItemModel(
+              id: product.id,
+              brand: product.brand,
+              title: product.title,
+              price: product.price,
+              tag: product.tag,
+            ),
+          )
+        ],
       ),
     );
   }
