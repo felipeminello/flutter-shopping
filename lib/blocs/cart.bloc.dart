@@ -5,7 +5,7 @@ class CartBloc extends ChangeNotifier {
   var cart = new List<CartItemModel>();
   double total = 0;
 
-  get() {
+  List get() {
     return cart;
   }
 
@@ -19,7 +19,7 @@ class CartBloc extends ChangeNotifier {
     calculateTotal();
   }
 
-  itemInCart(CartItemModel item) {
+  bool itemInCart(CartItemModel item) {
     var result = false;
     cart.forEach((x) {
       if (item.id == x.id) result = true;
@@ -27,7 +27,7 @@ class CartBloc extends ChangeNotifier {
     return result;
   }
 
-  increase(CartItemModel item) {
+  void increase(CartItemModel item) {
     if (item.quantity < 10) {
       item.quantity++;
       calculateTotal();
