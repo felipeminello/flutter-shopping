@@ -65,6 +65,9 @@ class ProductPage extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(
+            height: 200,
+          ),
           AddToCart(
             item: ProductListItemModel(
               id: product.id,
